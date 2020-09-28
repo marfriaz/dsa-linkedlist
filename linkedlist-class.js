@@ -1,5 +1,12 @@
 "use strict";
 
+class _Node {
+  constructor(value, next) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
 class LinkedList {
   constructor() {
     this.head = null;
@@ -80,6 +87,78 @@ class LinkedList {
     // you find the node before the node you are removing and update its next pointer to skip over the removed node
     // best-case performance is O(1),
     // and the average and worst cases are O(n) due to finding the node that you want to remove.
+  }
+
+  //=== Creating a singly linked list ===//
+
+  // Write a function main. Within the function, using the linked list class above,
+  // create a linked list with the name SLL and add the following items to your
+  // linked list: Apollo, Boomer, Helo, Husker, Starbuck.
+  
+  // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key.
+  insertBefore(newItem, nextItem) {
+    if (!this.head) {
+      return null;
+    }
+
+    if (this.head.value === nextItem) {
+      this.insertFirst(newItem);
+    }
+
+    let currNode = this.head;
+    let previousNode = this.head;
+
+    while (currNode !== null && currNode.value !== nextItem) {
+      previousNode = currNode;
+      currNode = currNode.next;
+    }
+
+    if (currNode === null) {
+      console.log("Item not found");
+      return null;
+    }
+    let newNode = new _Node(newItem, previousNode.next);
+    previousNode.next = newNode;
+  }
+
+  // Implement a function called insertAfter() in the class that inserts a new node after a node containing the key.
+  insertAfter(newItem, prevItem) {
+    if (!this.head) {
+      return null;
+    }
+    let currNode = this.head;
+
+    while (currNode !== null && currNode.value !== prevItem) {
+      currNode = currNode.next;
+    }
+    if (currNode === null) {
+      console.log("Item not found");
+      return;
+    }
+    if (prevItem.next === null) {
+      this.insertLast(newItem);
+      return;
+    }
+    let newNode = new _Node(newItem, currNode.next);
+    currNode.next = newNode;
+  }
+
+  // Implement a function called insertAt() that inserts an item at a specific position in the linked list.
+  insertAt(newItem, pos) {
+    let stepper = 0;
+    let currNode = this.head;
+    while (stepper !== pos) {
+      stepper++;
+      currNode = this.head.next;
+    }
+    if (currNode === null) {
+      console.log("Item not found");
+      return;
+    }
+    if (stepper === pos) {
+      this.insertAfter(newItem, currNode.value);
+      return;
+    }
   }
 }
 
