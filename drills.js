@@ -293,3 +293,64 @@ console.log(cycleList(cycleLinkedList));
 // For example given a list such as 3->2->5->7->1, your program
 // will output the sorted version of this list which will be 1->2->3->5->7.
 // You may not use another list or any other data structure such as an array to store the data.
+function sortList(head) {
+  if (head === null || head.next === null) {
+    return head;
+  }
+
+  let temp = null;
+  let slow = head;
+  let fast = head;
+
+  // merge sort: divide and conqueor- split list into halves and then merge em
+  while (fast !== null && fast.next !== null) {
+    temp = slow;
+    slow = slow.next;
+    // traverse's one at a time
+    fast = fast.next.next;
+    // traverse's two at a time
+    // when fast gets to null, slow will be in middle of the list, we can split in half here
+  }
+
+  // close first half list
+  temp.next = null;
+
+  const l1 = sortList(head);
+  const l2 = sortList(slow);
+  return merge(l1, l2);
+}
+class ListNode {
+  constructor(value, next) {
+    this.value = value;
+    this.next = next;
+  }
+}
+// sort in merge method
+function merge(l1, l2) {
+  const head = new ListNode();
+  let current = head;
+
+  while (l1 !== null && l2 !== null) {
+    if (l1.value < l2.value) {
+      current.next = l1;
+      l1 = l1.next;
+    } else {
+      current.next = l2;
+      l2 = l2.next;
+    }
+
+    current = current.next;
+  }
+
+  current.next = l1 === null ? l2 : l1;
+
+  return head.next;
+}
+
+const newLinkedList3 = new LinkedList();
+newLinkedList3.insertFirst("1");
+newLinkedList3.insertLast("2");
+newLinkedList3.insertLast("5");
+newLinkedList3.insertLast("10");
+
+console.log(sortList(newLinkedList3.head));

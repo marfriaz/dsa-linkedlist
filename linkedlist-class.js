@@ -56,6 +56,7 @@ class LinkedList {
       }
     }
     // Found it
+    // Linear Time O(n)
     return currNode;
   }
 
@@ -94,7 +95,7 @@ class LinkedList {
   // Write a function main. Within the function, using the linked list class above,
   // create a linked list with the name SLL and add the following items to your
   // linked list: Apollo, Boomer, Helo, Husker, Starbuck.
-  
+
   // Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key.
   insertBefore(newItem, nextItem) {
     if (!this.head) {
