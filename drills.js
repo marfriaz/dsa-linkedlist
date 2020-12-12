@@ -78,45 +78,37 @@ function isEmpty(llist) {
 }
 
 // findPrevious: finds the node before the item you are looking for
-function findPrevious(llist, node) {
-  let currNode = llist.head;
-  let previousNode = llist.head;
-  let stepper = 1;
+function findPrevious(LL, pos) {
+  let currNode = LL.head;
+  let previousNode = LL.head;
+  let counter = 1;
 
-  if (node <= 0) {
-    console.log("Node must be greater than 0");
-    return;
+  if (pos <= 1) {
+    return console.log("Position of node must be greater than 1");
   }
 
-  while (stepper < node) {
-    if (currNode === null) {
-      console.log("Boundary error");
-      return;
+  while (counter < pos) {
+    if (!currNode) {
+      return console.log("Boundary error: Linkedin List is not long enough.");
     }
-    stepper++;
+    counter++;
     previousNode = currNode;
     currNode = currNode.next;
   }
-  if (previousNode === null || node === 0) {
-    console.log("Item not found");
-    return;
-  }
-  console.log(`The Node before ${node} is: ${previousNode.value}`);
-  return;
+
+  return console.log(`The Node before Node ${pos} is: ${previousNode.value}`);
 }
 
 // findLast: returns the last node in the linked list
-function findLast(llist) {
-  if (llist.head === null) {
-    console.log("Linked list does not exist");
-    return;
+function findLast(LL) {
+  if (LL.head === null) {
+    return console.log("Linked list does not exist");
   }
-  let currNode = llist.head;
+  let currNode = LL.head;
   while (currNode.next !== null) {
     currNode = currNode.next;
   }
-  console.log(`The last node for this list is: ${currNode.value}`);
-  return;
+  return console.log(`The last node for this list is: ${currNode.value}`);
 }
 
 //=== Mystery program ===//

@@ -81,8 +81,7 @@ class LinkedList {
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log("Item not found");
-      return;
+      return console.log("Item not found");
     }
     previousNode.next = currNode.next;
     // you find the node before the node you are removing and update its next pointer to skip over the removed node
@@ -133,8 +132,7 @@ class LinkedList {
       currNode = currNode.next;
     }
     if (currNode === null) {
-      console.log("Item not found");
-      return;
+      return console.log("Item not found");
     }
     if (prevItem.next === null) {
       this.insertLast(newItem);
@@ -153,8 +151,7 @@ class LinkedList {
       currNode = this.head.next;
     }
     if (currNode === null) {
-      console.log("Item not found");
-      return;
+      return console.log("Item not found");
     }
     if (stepper === pos) {
       this.insertAfter(newItem, currNode.value);
